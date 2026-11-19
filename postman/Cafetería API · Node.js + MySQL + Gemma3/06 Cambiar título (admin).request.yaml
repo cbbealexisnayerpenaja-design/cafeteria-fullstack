@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/admin/site/1"
+method: PUT
+headers:
+  Content-Type: application/json
+  x-admin-key: "{{adminKey}}"
+body:
+  type: text
+  content: '{"hero_title":"¡Bienvenido a nuestra cafetería!"}'
+order: 6000

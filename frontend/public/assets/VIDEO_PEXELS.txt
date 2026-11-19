@@ -1,0 +1,4 @@
+Descarga desde https://www.pexels.com/video/barista-pouring-milk-on-coffee-6602227/
+Guarda el video MP4 en esta carpeta con nombre cafeteria.mp4.
+La página reproducirá automáticamente /assets/cafeteria.mp4 en silencio y bucle.
+Si no agregas el archivo, se mostrará la imagen de respaldo de la base de datos.

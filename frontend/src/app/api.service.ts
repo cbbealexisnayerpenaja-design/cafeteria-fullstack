@@ -1,0 +1,2 @@
+import {Injectable,inject} from '@angular/core';import {HttpClient} from '@angular/common/http';import {Content} from './models';
+@Injectable({providedIn:'root'})export class ApiService {private http=inject(HttpClient);content(){return this.http.get<Content>('/api/content')}contact(data:{name:string;email:string;phone:string;message:string}){return this.http.post<{message:string}>('/api/contact',data)}chat(message:string){return this.http.post<{response:string}>('/api/chatbot',{message})}}

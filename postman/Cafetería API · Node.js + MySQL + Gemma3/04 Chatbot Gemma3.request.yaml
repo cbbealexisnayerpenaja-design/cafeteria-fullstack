@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/api/chatbot"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"message":"¿Cuánto cuesta un capuchino y dónde están ubicados?"}'
+order: 4000

@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 80c58458-61ed-4154-9296-b2190ea4646a
+
+localResources:
+  collections:
+    - ../Cafetería API · Node.js + MySQL + Gemma3

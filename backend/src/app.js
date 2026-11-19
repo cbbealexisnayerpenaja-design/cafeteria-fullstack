@@ -1,0 +1,16 @@
+const express=require('express');const cors=require('cors');const rateLimit=require('express-rate-limit');
+const content=require('./controllers/content');const contacts=require('./controllers/contacts');const chatbot=require('./controllers/chatbot');const admin=require('./middleware/admin');
+const app=express();app.disable('x-powered-by');app.use(cors({origin:(process.env.FRONTEND_ORIGIN||'http://localhost:4200').split(',').map(x=>x.trim())}));app.use(express.json({limit:'32kb'}));
+const wrap=fn=>(req,res,next)=>Promise.resolve(fn(req,res,next)).catch(next);
+app.get('/api/health',(req,res)=>res.json({status:'ok'}));
+app.get('/api/content',wrap(content.publicContent));
+app.post('/api/contact',rateLimit({windowMs:15*60*1000,limit:5,standardHeaders:'draft-7',legacyHeaders:false}),wrap(contacts.send));
+app.post('/api/chatbot',rateLimit({windowMs:60*1000,limit:12,standardHeaders:'draft-7',legacyHeaders:false}),wrap(chatbot.ask));
+app.get('/api/admin/:entity',admin,wrap(content.list));
+app.post('/api/admin/:entity',admin,wrap(content.create));
+app.put('/api/admin/:entity/:id',admin,wrap(content.update));
+app.delete('/api/admin/:entity/:id',admin,wrap(content.remove));
+app.get('/api/admin-contacts',admin,wrap(contacts.list));
+app.use((req,res)=>res.status(404).json({error:'Ruta no encontrada'}));
+app.use((err,req,res,next)=>{console.error(err);res.status(err.status||500).json({error:err.status?err.message:'Error interno del servidor'});});
+module.exports=app;

@@ -1,0 +1,5 @@
+$kind: collection
+description: ""
+variables:
+  baseUrl: http://localhost:3000
+  adminKey: CAMBIAR_POR_CLAVE_DEL_ENV

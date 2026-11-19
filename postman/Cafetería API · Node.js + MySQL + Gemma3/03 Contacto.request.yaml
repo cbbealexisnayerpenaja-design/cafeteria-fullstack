@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/api/contact"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"Alexis","email":"alexis@example.com","phone":"77777777","message":"Hola, quisiera consultar por el menú."}'
+order: 3000
